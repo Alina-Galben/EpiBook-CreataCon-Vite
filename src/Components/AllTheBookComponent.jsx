@@ -28,7 +28,7 @@ export default function AllTheBookComponent() {
     <Container>
       <h1 className="text-center my-4">Tutti i libri</h1>
 
-      {/* 🔍 Input controllato */}
+      {/* Input controllato */}
       <Form className="mb-4">
         <Form.Control
           type="text"
