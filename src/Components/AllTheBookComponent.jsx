@@ -1,20 +1,26 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import React, { useState, useContext } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import fantasy from "../Data/fantasy.json";
 import history from "../Data/history.json";
 import horror from "../Data/horror.json";
 import romance from "../Data/romance.json";
 import scifi from "../Data/scifi.json";
 import SingleBookComponent from "./SingleBookComponent";
+import { ThemeContext } from "../context/ThemeContext";
 
 const booksData = [...fantasy, ...history, ...horror, ...romance, ...scifi];
 const PAGE_SIZE = 20;
 
-export default function AllTheBookComponent() {
+export default function AllTheBookComponent({ searchTerm, selectedGenre }) {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const [searchTerm, setSearchTerm] = useState("");
+  const { theme } = useContext(ThemeContext);
 
-  const filteredBooks = booksData.filter(book =>
+  let books = booksData
+  if (selectedGenre) {
+    books = books.filter(book => book.category.toLowerCase() === selectedGenre.toLowerCase())
+  }
+
+  const filteredBooks = books.filter(book =>
     book.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -25,21 +31,8 @@ export default function AllTheBookComponent() {
   };
 
   return (
-    <Container>
+    <Container className={theme === 'dark' ? 'bg-dark text-light' : 'bg-light text-dark'}>
       <h1 className="text-center my-4">Tutti i libri</h1>
-
-      {/* Input controllato */}
-      <Form className="mb-4">
-        <Form.Control
-          type="text"
-          placeholder="Cerca un libro per titolo..."
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setVisibleCount(PAGE_SIZE); // resetta la paginazione alla prima pagina quando si cerca
-          }}
-        />
-      </Form>
 
       <Row>
         {visibleBooks.map((book, index) => (

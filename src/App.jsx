@@ -1,24 +1,21 @@
-
-
-
-import AllTheBookComponent from './Components/AllTheBookComponent'
-import GenreBooksComponent from './Components/GenreBooksComponent'
-import MyFooterComponent from './Components/MyFooterComponent'
-import MyNavComponent from './Components/MyNavComponent'
-import WelcomeComponent from './Components/WelcomeComponent'
+import { ThemeProvider } from "./context/ThemeContext";
+import { useState } from 'react';
+import AppWithTheme from './AppWithTheme';
 
 function App() {
-  
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState(null);
 
   return (
-    <>
-     <MyNavComponent />
-     <WelcomeComponent />
-     <GenreBooksComponent />
-     <AllTheBookComponent />
-     <MyFooterComponent />
-    </>
-  )
+    <ThemeProvider>
+      <AppWithTheme
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        selectedGenre={selectedGenre}
+        setSelectedGenre={setSelectedGenre}
+      />
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;

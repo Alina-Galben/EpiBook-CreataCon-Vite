@@ -1,12 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Container, Row, Col, Button, Card, Collapse } from "react-bootstrap";
 import fantasy from "../Data/fantasy.json";
 import history from "../Data/history.json";
 import horror from "../Data/horror.json";
 import romance from "../Data/romance.json";
 import scifi from "../Data/scifi.json";
+import { ThemeContext } from "../context/ThemeContext";
 
-// Oggetto che mappa le categorie ai relativi libri
 const allGenres = {
   fantasy,
   history,
@@ -19,6 +19,7 @@ export default function GenreBooksComponent() {
   const [openGenre, setOpenGenre] = useState(null);
   const [expandedGenres, setExpandedGenres] = useState({});
   const genreRefs = useRef({}); // Ref per ogni categoria
+  const { theme } = useContext(ThemeContext);
 
   const handleToggle = (genre) => {
     setOpenGenre(openGenre === genre ? null : genre);
@@ -41,8 +42,7 @@ export default function GenreBooksComponent() {
   };
 
   return (
-    <Container className="my-4">
-      {/* Pulsanti delle categorie */}
+    <Container className={`my-4 ${theme === 'dark' ? 'bg-dark text-light' : 'bg-light text-dark'}`}>
       <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
         {Object.keys(allGenres).map((genre) => (
           <Button

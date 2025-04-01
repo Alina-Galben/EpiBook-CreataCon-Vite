@@ -1,39 +1,36 @@
-import React from "react"
+import React, { useContext } from "react";
 import { Button, Container, Form, Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import { ThemeContext } from '../context/ThemeContext';
 
-export default function MyNavComponent() {
+
+export default function MyNavComponent({ searchTerm, setSearchTerm, onGenreSelect }) {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
-    <Navbar expand="lg" bg="dark" data-bs-theme="dark">
+    <Navbar bg={theme === "dark" ? "dark" : "light"} variant={theme} expand="lg" fixed="top">
     <Container >
       <Navbar.Brand href="#">Epi Books</Navbar.Brand>
       <Navbar.Toggle aria-controls="navbarScroll" />
       <Navbar.Collapse id="navbarScroll">
-        <Nav
-          className="me-auto my-4 my-lg-0"
-          style={{ maxHeight: '100px' }}
-          navbarScroll
-        >
+        <Nav className="me-auto my-4 my-lg-0" style={{ maxHeight: '100px' }}  navbarScroll>
           <Nav.Link href="#action1">Home</Nav.Link>
           <Nav.Link href="#action2">About</Nav.Link>
           <Nav.Link href="#action3">Browse</Nav.Link>
           <NavDropdown title="Generi Letterari" id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action4">Fantasy</NavDropdown.Item>
-            <NavDropdown.Item href="#action5">Romance</NavDropdown.Item>
-            <NavDropdown.Item href="#action6">History</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action7">Horror</NavDropdown.Item>
-            <NavDropdown.Item href="#action8">Scifi</NavDropdown.Item>
+          {["fantasy", "romance", "history", "horror", "scifi"].map((genre) => (
+            <NavDropdown.Item key={genre} onClick={() => onGenreSelect(genre)}>
+              {genre.charAt(0).toUpperCase() + genre.slice(1)}
+            </NavDropdown.Item>
+          ))}
           </NavDropdown>
-          
         </Nav>
         <Form className="d-flex">
-          <Form.Control
-            type="search"
-            placeholder="Search"
-            className="me-2"
-            aria-label="Search"
+          <Form.Control type="search" placeholder="Search" className="me-2"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <Button variant="success">Search</Button>
+          <Button onClick={toggleTheme} variant="outline-secondary">
+          Tema: {theme === "light" ? "🌞" : "🌙"}
+          </Button>
         </Form>
       </Navbar.Collapse>
     </Container>
