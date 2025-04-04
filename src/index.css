@@ -1,0 +1,8 @@
+/* Stili globali */
+body {
+  padding-top: 70px; /* spazio sotto la navbar */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Helvetica Neue', sans-serif;
+  min-height: 100vh;
+}
+  

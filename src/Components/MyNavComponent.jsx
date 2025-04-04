@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Button, Container, Form, Nav, Navbar, NavDropdown} from 'react-bootstrap';
-import { ThemeContext } from '../context/ThemeContext';
+import { useTheme } from "../hooks/useTheme";
 
 
 export default function MyNavComponent({ searchTerm, setSearchTerm, onGenreSelect }) {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useTheme();
   return (
     <Navbar bg={theme === "dark" ? "dark" : "light"} variant={theme} expand="lg" fixed="top">
     <Container >

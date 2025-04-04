@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import CommentAreaComponent from './CommentAreaComponent';
-import { ThemeContext } from '../context/ThemeContext';
+import { useTheme } from "../hooks/useTheme";
 
 export default function SingleBookComponent({ book }) {
   const [selected, setSelected] = useState(false);
@@ -15,7 +15,7 @@ export default function SingleBookComponent({ book }) {
     setSelected(false);
   };
 
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
 
   return (
     <div className="position-relative" onClick={handleCardClick} style={{ cursor: "pointer" }}>

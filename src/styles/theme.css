@@ -1,0 +1,18 @@
+/* Temi con variabili CSS */
+:root {
+  --bg-light: #ffffff;
+  --text-light: #000000;
+  --bg-dark: #121212;
+  --text-dark: #f1f1f1;
+}
+  
+body.theme-light {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+  
+body.theme-dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+  

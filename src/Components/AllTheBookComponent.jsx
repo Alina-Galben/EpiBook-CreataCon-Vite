@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import fantasy from "../Data/fantasy.json";
 import history from "../Data/history.json";
@@ -6,14 +6,14 @@ import horror from "../Data/horror.json";
 import romance from "../Data/romance.json";
 import scifi from "../Data/scifi.json";
 import SingleBookComponent from "./SingleBookComponent";
-import { ThemeContext } from "../context/ThemeContext";
+import { useTheme } from "../hooks/useTheme";
 
 const booksData = [...fantasy, ...history, ...horror, ...romance, ...scifi];
 const PAGE_SIZE = 20;
 
 export default function AllTheBookComponent({ searchTerm, selectedGenre }) {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
 
   let books = booksData
   if (selectedGenre) {
@@ -31,7 +31,7 @@ export default function AllTheBookComponent({ searchTerm, selectedGenre }) {
   };
 
   return (
-    <Container className={theme === 'dark' ? 'bg-dark text-light' : 'bg-light text-dark'}>
+    <Container>
       <h1 className="text-center my-4">Tutti i libri</h1>
 
       <Row>
