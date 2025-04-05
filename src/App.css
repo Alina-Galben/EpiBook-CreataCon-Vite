@@ -1,0 +1,9 @@
+@media (max-width: 768px) {
+  .custom-book-card {
+    min-height: auto;
+  }
+  
+  .comment-area {
+    padding-top: 1rem;
+  }
+}

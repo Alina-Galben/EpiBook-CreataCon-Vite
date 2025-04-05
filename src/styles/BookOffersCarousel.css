@@ -1,0 +1,30 @@
+.carousel-full-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+  
+.carousel-img {
+  max-height: 350px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+  
+.carousel-title {
+  font-size: 4rem; /* ancora più grande */
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9);
+  font-family: 'Josefin Sans', sans-serif;
+}
+  
+.carousel-subtitle {
+  font-size: 2rem;
+  font-weight: 500;
+  color: white;
+  margin-top: 1rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+  font-family: 'Josefin Sans', sans-serif;
+}
+  
