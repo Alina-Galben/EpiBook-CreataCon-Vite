@@ -9,7 +9,7 @@ import img4 from "../assets/img4.jpg";
 export default function BookOffersCarousel() {
   return (
     <div className="carousel-full-wrapper mb-4" >
-      <Carousel interval={8000}  fade indicators={false}>
+      <Carousel interval={6000}  fade indicators={false}>
         <Carousel.Item>
           <img className="d-block w-100 carousel-img" src={img1} alt="Immagine 1" />
         </Carousel.Item>
