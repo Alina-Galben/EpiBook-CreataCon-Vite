@@ -6,6 +6,7 @@ import horror from "../Data/horror.json";
 import romance from "../Data/romance.json";
 import scifi from "../Data/scifi.json";
 import { useTheme } from "../hooks/useTheme";
+import { useCart } from "../context/CartContext";
 
 const allGenres = {
   fantasy,
@@ -21,8 +22,8 @@ export default function GenreBooksComponent({ onBookSelect, selectedAsin }) {
   const genreRefs = useRef({});
   const commentRef = useRef(null);
   const { theme } = useTheme();
+  const { addToCart } = useCart();
 
-  // Scroll automatico alla selezione di un libro
   useEffect(() => {
     if (selectedAsin) {
       if (window.innerWidth < 768 && commentRef.current) {
@@ -58,7 +59,6 @@ export default function GenreBooksComponent({ onBookSelect, selectedAsin }) {
         ))}
       </div>
 
-      {/* Sezioni dei libri per ogni genere */}
       {Object.keys(allGenres).map((genre) => {
         const books = allGenres[genre];
         const visible = visibleCounts[genre] || 12;
@@ -90,6 +90,9 @@ export default function GenreBooksComponent({ onBookSelect, selectedAsin }) {
                       <Card.Body>
                         <Card.Title>{book.title}</Card.Title>
                         <Card.Text><strong>Prezzo:</strong> ${book.price}</Card.Text>
+                        <Button variant="outline-primary" size="sm" onClick={(e) => { e.stopPropagation(); addToCart(book); }}>
+                        <i className="bi bi-cart"></i>
+                        </Button>
                       </Card.Body>
                     </Card>
                   </Col>
@@ -103,8 +106,6 @@ export default function GenreBooksComponent({ onBookSelect, selectedAsin }) {
                   </Button>
                 </div>
               )}
-
-              {/* REF per scroll su mobile */}
               <div ref={commentRef}></div>
             </div>
           </Collapse>

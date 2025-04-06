@@ -1,9 +1,14 @@
-import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Button, Container, Form, Nav, Navbar, NavDropdown, Badge } from 'react-bootstrap';
 import { useTheme } from "../hooks/useTheme";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function MyNavComponent({ searchTerm, setSearchTerm, onGenreSelect }) {
   const { theme, toggleTheme } = useTheme();
+  const { cart } = useCart();
+  const quantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -28,6 +33,14 @@ export default function MyNavComponent({ searchTerm, setSearchTerm, onGenreSelec
                 </NavDropdown.Item>
               ))}
             </NavDropdown>
+            <Nav.Link as={NavLink} to="/cart">
+               <i className="bi bi-cart"></i> Carrello {quantity > 0 && <Badge bg="success">{quantity}</Badge>}
+            </Nav.Link>
+            {user ? (
+              <Nav.Link as={NavLink} to="/account"><i className="bi bi-person-circle"></i> Account</Nav.Link>
+            ) : (
+              <Nav.Link as={NavLink} to="/login">Login</Nav.Link>
+            )}
           </Nav>
 
           <Form className="d-flex">

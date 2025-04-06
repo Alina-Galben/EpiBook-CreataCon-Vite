@@ -38,7 +38,7 @@ export default function CommentAreaComponent({ asin }) {
   if (!asin) {
     return (
       <Alert variant="info" className="mt-5">
-        <h3>✨ Hai già scelto il tuo prossimo libro?</h3>
+        <h3>✨😍 Hai già scelto il tuo prossimo libro?</h3>
         <h3> Cliccane uno per leggere i commenti!</h3>
       </Alert>
     );

@@ -4,12 +4,14 @@ import booksData from "../Data/combinedBooks";
 import { Container, Row, Col, Card, Alert, Spinner, Button } from "react-bootstrap";
 import CommentAreaComponent from "../Components/CommentAreaComponent";
 import { motion } from "framer-motion";
+import { useCart } from "../context/CartContext";
 
 export default function BookDetails() {
   const { asin } = useParams();
   const [loading, setLoading] = useState(true);
   const [book, setBook] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -72,12 +74,17 @@ export default function BookDetails() {
                   <br />
                   <strong>Prezzo:</strong> ${book.price}
                 </Card.Text>
-                <Button
-                  variant={isFavorite ? "success" : "outline-secondary"}
-                  onClick={toggleFavorite}
-                >
-                  {isFavorite ? "★ Rimuovi dai preferiti" : "☆ Aggiungi ai preferiti"}
-                </Button>
+                <div className="d-flex flex-column gap-2">
+                  <Button
+                    variant={isFavorite ? "success" : "outline-secondary"}
+                    onClick={toggleFavorite}
+                  >
+                    {isFavorite ? "★ Rimuovi dai preferiti" : "☆ Aggiungi ai preferiti"}
+                  </Button>
+                  <Button variant="outline-primary" onClick={() => addToCart(book)}>
+                  <i className="bi bi-cart"></i> Aggiungi al carrello
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           </Col>

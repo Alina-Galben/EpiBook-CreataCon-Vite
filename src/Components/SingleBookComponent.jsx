@@ -3,11 +3,13 @@ import { useTheme } from "../hooks/useTheme";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useCart } from "../context/CartContext";
 
-export default function SingleBookComponent({ book, isSelected, onSelect }) {
+export default function SingleBookComponent({ book, isSelected, onSelect, onUnfavorite }) {
   const { theme } = useTheme();
   const navigate = useNavigate();
   const [isFavorite, setIsFavorite] = useState(false);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const favs = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -19,11 +21,14 @@ export default function SingleBookComponent({ book, isSelected, onSelect }) {
     let updated;
     if (favs.includes(book.asin)) {
       updated = favs.filter((id) => id !== book.asin);
+      localStorage.setItem("favorites", JSON.stringify(updated));
+      setIsFavorite(false);
+      if (onUnfavorite) onUnfavorite(book.asin);
     } else {
       updated = [...favs, book.asin];
+      localStorage.setItem("favorites", JSON.stringify(updated));
+      setIsFavorite(true);
     }
-    localStorage.setItem("favorites", JSON.stringify(updated));
-    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -53,6 +58,9 @@ export default function SingleBookComponent({ book, isSelected, onSelect }) {
             </Button>
             <Button variant="warning" size="sm" onClick={() => onSelect(book.asin)}>
               Commenti
+            </Button>
+            <Button variant="outline-primary" size="sm" onClick={() => addToCart(book)}>
+            <i className="bi bi-cart"></i>
             </Button>
             <Button
               variant={isFavorite ? "success" : "outline-secondary"}
