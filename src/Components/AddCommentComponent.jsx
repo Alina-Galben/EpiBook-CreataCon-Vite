@@ -30,7 +30,7 @@ export default function AddCommentComponent({ asin, onAdd, current }) {
   }
 
   return (
-    <Form className="mb-3">
+    <Form className="mb-3" data-testid="add-comment-component">
       <Form.Group>
         <Form.Label>Commento</Form.Label>
         <Form.Control value={text} onChange={(e) => setText(e.target.value)} />

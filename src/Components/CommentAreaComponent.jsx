@@ -46,7 +46,7 @@ export default function CommentAreaComponent({ asin }) {
 
   return (
     <div className="mt-3 px-3">
-      {loading && <Spinner animation="border" />}
+      {loading && <Spinner animation="border" role="status" />}
       {error && <Alert variant="danger">{error}</Alert>}
 
       <AddCommentComponent asin={asin} onAdd={setComments} current={comments} />
