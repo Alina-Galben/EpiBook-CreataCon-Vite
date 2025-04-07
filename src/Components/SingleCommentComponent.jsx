@@ -12,7 +12,7 @@ export default function SingleCommentComponent({ comment, onDelete, onUpdate }) 
   }
 
   return (
-    <ListGroup.Item>
+    <ListGroup.Item data-testid="single-comment">
       {isEditing ? (
         <>
           <Form.Control

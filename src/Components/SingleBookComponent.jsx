@@ -38,7 +38,7 @@ export default function SingleBookComponent({ book, isSelected, onSelect, onUnfa
       transition={{ duration: 0.3 }}
       className="w-100"
     >
-      <Card data-testid="single-book"
+      <Card data-testid={`single-book-${book.asin}`}
         className={`custom-book-card ${theme === 'dark' ? 'bg-dark text-light' : 'bg-light text-dark'}`}
         style={{ border: isSelected ? "4px solid yellow" : "2px solid transparent" }}
       >
