@@ -25,7 +25,7 @@ export default function CommentAreaComponent({ asin }) {
         setComments(data);
         setError(null);
       } catch (err) {
-        setError(err.message);
+        setError("Sessione scaduta. Effettua di nuovo il login.");
       } finally {
         setLoading(false);
       }

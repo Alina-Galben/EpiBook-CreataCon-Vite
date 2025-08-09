@@ -23,6 +23,8 @@ export default function AddCommentComponent({ asin, onAdd, current }) {
         onAdd([...(current || []), newComment]);
         setText("");
         setRate("1");
+      } else if (response.status === 401) {
+        alert("Sessione scaduta. Effettua di nuovo il login.");
       }
     } catch (err) {
       alert("Errore durante l'invio");
