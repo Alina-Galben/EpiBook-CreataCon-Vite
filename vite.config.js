@@ -4,7 +4,6 @@ import react from '@vitejs/plugin-react';
 // 👇 ECCO LA CONFIGURAZIONE COMPLETA
 export default defineConfig({
   plugins: [react()],
-  base: '/EpiBook-CreataCon-Vite/',
   test: {
     globals: true,
     environment: 'jsdom',
