@@ -3,6 +3,7 @@
 Un'applicazione React che simula una libreria online dove gli utenti possono esplorare libri, visualizzare dettagli e gestire i preferiti in modo semplice ed elegante.  
 Il progetto è stato avviato con **Vite** per garantire prestazioni elevate e tempi di sviluppo più rapidi.
 
+**Guarda il sito live qui: [https://epibook-alina.netlify.app](https://epibook-alina.netlify.app)**
 ---
 ## 📸 Screenshot
 
